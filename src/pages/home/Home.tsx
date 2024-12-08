@@ -2,6 +2,7 @@ import { Title, Text } from "@mantine/core";
 import Header from "../../components/header/Header";
 import styles from "./Home.module.css";
 import Footer from "../../components/footer/Footer";
+import Button from "../../components/button/Button";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
         <Text className={styles.textContent}>
           Be the first to know when we launch
         </Text>
+        <Button>Request an invite</Button>
       </div>
       <Footer />
     </div>
