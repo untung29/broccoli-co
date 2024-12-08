@@ -1,14 +1,16 @@
 import { createTheme, MantineProvider } from "@mantine/core";
 import "./App.css";
 import "@mantine/core/styles.css";
-import Header from "./components/Header/Header";
+import Home from "./pages/home/Home";
 
-const theme = createTheme({});
+const theme = createTheme({
+  fontFamily: "Montserrat, sans-serif",
+});
 
 function App() {
   return (
     <MantineProvider theme={theme}>
-      <Header></Header>
+      <Home></Home>
     </MantineProvider>
   );
 }
