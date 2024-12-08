@@ -5,9 +5,9 @@ import Footer from "../../components/footer/Footer";
 
 const Home = () => {
   return (
-    <div className={styles.content}>
+    <div className={styles.home}>
       <Header />
-      <div>
+      <div className={styles.content}>
         <Title className={styles.title}>A better way to enjoy every day.</Title>
         <Text className={styles.textContent}>
           Be the first to know when we launch
