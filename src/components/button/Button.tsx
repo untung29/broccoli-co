@@ -1,9 +1,14 @@
 import { Button as MButton } from "@mantine/core";
 import { TButtonProps } from "./types";
 
-const Button = ({ children }: TButtonProps) => {
+const Button = ({
+  children,
+  size = "md",
+  variant = "outline",
+  w = "100%",
+}: TButtonProps) => {
   return (
-    <MButton size="md" variant="outline">
+    <MButton size={size} variant={variant} w={w}>
       {children}
     </MButton>
   );

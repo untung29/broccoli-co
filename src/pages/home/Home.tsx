@@ -13,7 +13,7 @@ const Home = () => {
         <Text className={styles.textContent}>
           Be the first to know when we launch
         </Text>
-        <Button>Request an invite</Button>
+        <Button w={"75%"}>Request an invite</Button>
       </div>
       <Footer />
     </div>
