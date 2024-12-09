@@ -5,7 +5,7 @@ import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import { useDisclosure } from "@mantine/hooks";
 import Modal from "../../components/modal/Modal";
-import { hasLength, isEmail, useForm } from "@mantine/form";
+import { hasLength, isEmail, matchesField, useForm } from "@mantine/form";
 import { useMutation } from "@tanstack/react-query";
 import { postInvitation } from "../../utils/api/post-invitation";
 import RequestInviteForm from "./components/request-invite-form/RequestInviteForm";
@@ -13,6 +13,7 @@ import RequestInviteForm from "./components/request-invite-form/RequestInviteFor
 export type TFormValues = {
   email: string;
   name: string;
+  confirmEmail: string;
 };
 
 const Home = () => {
@@ -22,10 +23,12 @@ const Home = () => {
     initialValues: {
       email: "",
       name: "",
+      confirmEmail: "",
     },
     validate: {
       email: isEmail("Invalid email"),
       name: hasLength({ min: 3 }, "Name should be at least 3 characters"),
+      confirmEmail: matchesField("email", "Emails are not the same"),
     },
   });
 
@@ -37,21 +40,14 @@ const Home = () => {
   };
 
   const mutation = useMutation({
-    mutationFn: () => {
-      return postInvitation(
-        form.getInputProps("name").value,
-        form.getInputProps("email").value
-      );
+    mutationFn: ({ email, name }: { email: string; name: string }) => {
+      return postInvitation(name, email);
     },
   });
 
-  const handleFormSubmit = (event: React.FormEvent) => {
-    // Avoid refreshing the page
-    event.preventDefault();
-
-    // Call the API
-    mutation.mutate();
-  };
+  const handleFormSubmit = form.onSubmit((values) => {
+    mutation.mutate({ email: values.email, name: values.name });
+  });
 
   return (
     <div className={styles.home}>

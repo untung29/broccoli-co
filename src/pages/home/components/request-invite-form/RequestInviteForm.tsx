@@ -3,11 +3,10 @@ import Button from "../../../../components/button/Button";
 import Input from "../../../../components/input/Input";
 import styles from "./RequestInviteForm.module.css";
 import WithSpinner from "../../../../hocs/with-spinner/WithSpinner.component";
-import { FormEventHandler } from "react";
 import { TFormValues } from "../../Home";
 
 type TRequestInviteFormProps = {
-  onSubmit: FormEventHandler;
+  onSubmit: (event?: React.FormEvent<HTMLFormElement>) => void;
   form: UseFormReturnType<TFormValues>;
 };
 
@@ -19,6 +18,7 @@ const RequestInviteForm = ({ onSubmit, form }: TRequestInviteFormProps) => {
         type="text"
         placeholder="Name"
         {...form.getInputProps("name")}
+        key={form.key("name")}
       />
 
       <Input
@@ -26,6 +26,15 @@ const RequestInviteForm = ({ onSubmit, form }: TRequestInviteFormProps) => {
         type="email"
         placeholder="Type your email"
         {...form.getInputProps("email")}
+        key={form.key("email")}
+      />
+
+      <Input
+        label="Confirm Email"
+        type="email"
+        placeholder="Confirm your email"
+        {...form.getInputProps("confirmEmail")}
+        key={form.key("confirmEmail")}
       />
 
       <Button type="submit">Submit Form</Button>
