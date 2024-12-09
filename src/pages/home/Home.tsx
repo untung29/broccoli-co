@@ -6,16 +6,18 @@ import Button from "../../components/button/Button";
 import { useDisclosure } from "@mantine/hooks";
 import Modal from "../../components/modal/Modal";
 import Input from "../../components/input/Input";
-import { useForm } from "@mantine/form";
+import { hasLength, isEmail, useForm } from "@mantine/form";
 
 const Home = () => {
   const [opened, { open, close }] = useDisclosure();
   const form = useForm({
     initialValues: {
       email: "",
+      name: "",
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      email: isEmail("Invalid email"),
+      name: hasLength({ min: 3 }, "Name should be at least 3 characters"),
     },
   });
 
@@ -34,7 +36,17 @@ const Home = () => {
       <Footer />
 
       <Modal title="Form to sign up" opened={opened} onClose={close}>
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form
+          className={styles.form}
+          onSubmit={form.onSubmit((values) => console.log(values))}
+        >
+          <Input
+            label="Name"
+            type="text"
+            placeholder="Name"
+            {...form.getInputProps("name")}
+          />
+
           <Input
             label="Email"
             type="email"
