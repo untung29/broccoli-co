@@ -5,10 +5,10 @@ import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import { useDisclosure } from "@mantine/hooks";
 import Modal from "../../components/modal/Modal";
-import Input from "../../components/input/Input";
 import { hasLength, isEmail, useForm } from "@mantine/form";
 import { useMutation } from "@tanstack/react-query";
 import { postInvitation } from "../../utils/api/post-invitation";
+import RequestInviteForm from "./components/request-invite-form/RequestInviteForm";
 
 const Home = () => {
   const [opened, { open, close }] = useDisclosure();
@@ -56,25 +56,7 @@ const Home = () => {
       <Footer />
 
       <Modal title="Form to sign up" opened={opened} onClose={close}>
-        <form className={styles.form} onSubmit={onSubmit}>
-          <Input
-            label="Name"
-            type="text"
-            placeholder="Name"
-            {...form.getInputProps("name")}
-          />
-
-          <Input
-            label="Email"
-            type="email"
-            placeholder="Type your email"
-            {...form.getInputProps("email")}
-          />
-
-          <Button type="submit" w={"100%"}>
-            Submit Form
-          </Button>
-        </form>
+        <RequestInviteForm onSubmit={onSubmit} isLoading={mutation.isPending} />
       </Modal>
     </div>
   );
