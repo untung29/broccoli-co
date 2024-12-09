@@ -1,6 +1,7 @@
 import { ButtonProps } from "@mantine/core";
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export type TButtonProps = {
   children: ReactNode;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 } & Pick<ButtonProps, "size" | "variant" | "w">;
