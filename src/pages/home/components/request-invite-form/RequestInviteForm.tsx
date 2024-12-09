@@ -2,7 +2,7 @@ import { UseFormReturnType } from "@mantine/form";
 import Button from "../../../../components/button/Button";
 import Input from "../../../../components/input/Input";
 import styles from "./RequestInviteForm.module.css";
-import WithSpinner from "../../../../hocs/with-spinner/WithSpinner.component";
+import WithLoader from "../../../../hocs/with-loader/WithLoader";
 import { TFormValues } from "../../Home";
 
 type TRequestInviteFormProps = {
@@ -42,6 +42,6 @@ const RequestInviteForm = ({ onSubmit, form }: TRequestInviteFormProps) => {
   );
 };
 
-const RequestInviteFormContainer = WithSpinner(RequestInviteForm);
+const RequestInviteFormContainer = WithLoader(RequestInviteForm);
 
 export default RequestInviteFormContainer;
