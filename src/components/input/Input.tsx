@@ -1,8 +1,8 @@
 import { TextInput } from "@mantine/core";
 import { TInput } from "./type";
 
-const Input = ({ label, placeholder }: TInput) => {
-  return <TextInput label={label} placeholder={placeholder} />;
+const Input = (props: TInput) => {
+  return <TextInput {...props} />;
 };
 
 export default Input;
