@@ -1,9 +1,9 @@
 import { Modal as MModal } from "@mantine/core";
 import { TModal } from "./type";
 
-const Modal = ({ children, opened, onClose }: TModal) => {
+const Modal = ({ children, opened, onClose, title }: TModal) => {
   return (
-    <MModal opened={opened} onClose={onClose} centered>
+    <MModal title={title} opened={opened} onClose={onClose} centered>
       {children}
     </MModal>
   );

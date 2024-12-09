@@ -3,4 +3,4 @@ import { ReactNode } from "react";
 
 export type TModal = {
   children: ReactNode;
-} & Pick<ModalProps, "opened" | "onClose">;
+} & Pick<ModalProps, "opened" | "onClose" | "title">;
