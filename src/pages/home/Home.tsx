@@ -10,10 +10,15 @@ import { useMutation } from "@tanstack/react-query";
 import { postInvitation } from "../../utils/api/post-invitation";
 import RequestInviteForm from "./components/request-invite-form/RequestInviteForm";
 
+export type TFormValues = {
+  email: string;
+  name: string;
+};
+
 const Home = () => {
   const [opened, { open, close }] = useDisclosure();
 
-  const form = useForm({
+  const form = useForm<TFormValues>({
     initialValues: {
       email: "",
       name: "",
@@ -33,7 +38,7 @@ const Home = () => {
     },
   });
 
-  const onSubmit = (event: React.FormEvent) => {
+  const handleFormSubmit = (event: React.FormEvent) => {
     // Avoid refreshing the page
     event.preventDefault();
 
@@ -49,14 +54,20 @@ const Home = () => {
         <Text className={styles.textContent}>
           Be the first to know when we launch
         </Text>
-        <Button onClick={open} w={"100%"}>
-          Request an invite
-        </Button>
+        <Button onClick={open}>Request an invite</Button>
       </div>
       <Footer />
 
       <Modal title="Form to sign up" opened={opened} onClose={close}>
-        <RequestInviteForm onSubmit={onSubmit} isLoading={mutation.isPending} />
+        {mutation.isSuccess ? (
+          "Successful"
+        ) : (
+          <RequestInviteForm
+            onSubmit={handleFormSubmit}
+            isLoading={mutation.isPending}
+            form={form}
+          />
+        )}
       </Modal>
     </div>
   );

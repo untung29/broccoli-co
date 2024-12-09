@@ -1,26 +1,17 @@
-import { hasLength, isEmail, useForm } from "@mantine/form";
+import { UseFormReturnType } from "@mantine/form";
 import Button from "../../../../components/button/Button";
 import Input from "../../../../components/input/Input";
 import styles from "./RequestInviteForm.module.css";
 import WithSpinner from "../../../../hocs/with-spinner/WithSpinner.component";
 import { FormEventHandler } from "react";
+import { TFormValues } from "../../Home";
 
 type TRequestInviteFormProps = {
   onSubmit: FormEventHandler;
+  form: UseFormReturnType<TFormValues>;
 };
 
-const RequestInviteForm = ({ onSubmit }: TRequestInviteFormProps) => {
-  const form = useForm({
-    initialValues: {
-      email: "",
-      name: "",
-    },
-    validate: {
-      email: isEmail("Invalid email"),
-      name: hasLength({ min: 3 }, "Name should be at least 3 characters"),
-    },
-  });
-
+const RequestInviteForm = ({ onSubmit, form }: TRequestInviteFormProps) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
       <Input
