@@ -3,5 +3,6 @@ import { MouseEventHandler, ReactNode } from "react";
 
 export type TButtonProps = {
   children: ReactNode;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-} & Pick<ButtonProps, "size" | "variant" | "w">;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  type?: HTMLButtonElement["type"];
+} & Pick<ButtonProps, "size" | "variant" | "w" | "disabled">;

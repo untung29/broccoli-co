@@ -6,10 +6,19 @@ const Button = ({
   size = "md",
   variant = "outline",
   w = "100%",
+  disabled,
   onClick,
+  type,
 }: TButtonProps) => {
   return (
-    <MButton onClick={onClick} size={size} variant={variant} w={w}>
+    <MButton
+      type={type}
+      onClick={onClick}
+      size={size}
+      variant={variant}
+      w={w}
+      disabled={disabled}
+    >
       {children}
     </MButton>
   );
