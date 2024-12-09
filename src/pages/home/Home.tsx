@@ -9,6 +9,7 @@ import { hasLength, isEmail, matchesField, useForm } from "@mantine/form";
 import { useMutation } from "@tanstack/react-query";
 import { postInvitation } from "../../utils/api/post-invitation";
 import RequestInviteForm from "./components/request-invite-form/RequestInviteForm";
+import SuccessfulInviteRequest from "./components/successful-invite-request/SuccessfulInviteRequest";
 
 export type TFormValues = {
   email: string;
@@ -61,9 +62,9 @@ const Home = () => {
       </div>
       <Footer />
 
-      <Modal title="Form to sign up" opened={opened} onClose={handleCloseModal}>
-        {mutation.isSuccess ? (
-          "Successful"
+      <Modal opened={opened} onClose={handleCloseModal}>
+        {!mutation.isSuccess ? (
+          <SuccessfulInviteRequest onClose={handleCloseModal} />
         ) : (
           <RequestInviteForm
             onSubmit={handleFormSubmit}
