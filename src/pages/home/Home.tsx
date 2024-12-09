@@ -29,6 +29,13 @@ const Home = () => {
     },
   });
 
+  const handleCloseModal = () => {
+    mutation.reset();
+    form.reset();
+
+    close();
+  };
+
   const mutation = useMutation({
     mutationFn: () => {
       return postInvitation(
@@ -58,7 +65,7 @@ const Home = () => {
       </div>
       <Footer />
 
-      <Modal title="Form to sign up" opened={opened} onClose={close}>
+      <Modal title="Form to sign up" opened={opened} onClose={handleCloseModal}>
         {mutation.isSuccess ? (
           "Successful"
         ) : (
