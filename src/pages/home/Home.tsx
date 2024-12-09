@@ -5,6 +5,7 @@ import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
 import { useDisclosure } from "@mantine/hooks";
 import Modal from "../../components/modal/Modal";
+import Input from "../../components/input/Input";
 
 const Home = () => {
   const [opened, { open, close }] = useDisclosure();
@@ -24,7 +25,7 @@ const Home = () => {
       <Footer />
 
       <Modal opened={opened} onClose={close}>
-        Untung
+        <Input label="Email" placeholder="Your Email" />
       </Modal>
     </div>
   );
