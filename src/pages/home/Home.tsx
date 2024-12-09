@@ -7,9 +7,12 @@ import { useDisclosure } from "@mantine/hooks";
 import Modal from "../../components/modal/Modal";
 import Input from "../../components/input/Input";
 import { hasLength, isEmail, useForm } from "@mantine/form";
+import { useMutation } from "@tanstack/react-query";
+import { postInvitation } from "../../utils/api/post-invitation";
 
 const Home = () => {
   const [opened, { open, close }] = useDisclosure();
+
   const form = useForm({
     initialValues: {
       email: "",
@@ -20,6 +23,23 @@ const Home = () => {
       name: hasLength({ min: 3 }, "Name should be at least 3 characters"),
     },
   });
+
+  const mutation = useMutation({
+    mutationFn: () => {
+      return postInvitation(
+        form.getInputProps("name").value,
+        form.getInputProps("email").value
+      );
+    },
+  });
+
+  const onSubmit = (event: React.FormEvent) => {
+    // Avoid refreshing the page
+    event.preventDefault();
+
+    // Call the API
+    mutation.mutate();
+  };
 
   return (
     <div className={styles.home}>
@@ -36,10 +56,7 @@ const Home = () => {
       <Footer />
 
       <Modal title="Form to sign up" opened={opened} onClose={close}>
-        <form
-          className={styles.form}
-          onSubmit={form.onSubmit((values) => console.log(values))}
-        >
+        <form className={styles.form} onSubmit={onSubmit}>
           <Input
             label="Name"
             type="text"
