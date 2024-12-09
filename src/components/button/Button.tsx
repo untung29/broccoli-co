@@ -9,6 +9,7 @@ const Button = ({
   disabled,
   onClick,
   type,
+  loading,
 }: TButtonProps) => {
   return (
     <MButton
@@ -18,6 +19,7 @@ const Button = ({
       variant={variant}
       w={w}
       disabled={disabled}
+      loading={loading}
     >
       {children}
     </MButton>

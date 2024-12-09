@@ -63,7 +63,7 @@ const Home = () => {
       <Footer />
 
       <Modal opened={opened} onClose={handleCloseModal}>
-        {!mutation.isSuccess ? (
+        {mutation.isSuccess ? (
           <SuccessfulInviteRequest onClose={handleCloseModal} />
         ) : (
           <RequestInviteForm
