@@ -6,9 +6,18 @@ import Button from "../../components/button/Button";
 import { useDisclosure } from "@mantine/hooks";
 import Modal from "../../components/modal/Modal";
 import Input from "../../components/input/Input";
+import { useForm } from "@mantine/form";
 
 const Home = () => {
   const [opened, { open, close }] = useDisclosure();
+  const form = useForm({
+    initialValues: {
+      email: "",
+    },
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+    },
+  });
 
   return (
     <div className={styles.home}>
@@ -24,8 +33,19 @@ const Home = () => {
       </div>
       <Footer />
 
-      <Modal opened={opened} onClose={close}>
-        <Input label="Email" placeholder="Your Email" />
+      <Modal title="Form to sign up" opened={opened} onClose={close}>
+        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+          <Input
+            label="Email"
+            type="email"
+            placeholder="Type your email"
+            {...form.getInputProps("email")}
+          />
+
+          <Button type="submit" w={"100%"}>
+            Submit Form
+          </Button>
+        </form>
       </Modal>
     </div>
   );
