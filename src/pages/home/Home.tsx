@@ -3,8 +3,12 @@ import Header from "../../components/header/Header";
 import styles from "./Home.module.css";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
+import { useDisclosure } from "@mantine/hooks";
+import Modal from "../../components/modal/Modal";
 
 const Home = () => {
+  const [opened, { open, close }] = useDisclosure();
+
   return (
     <div className={styles.home}>
       <Header />
@@ -13,9 +17,15 @@ const Home = () => {
         <Text className={styles.textContent}>
           Be the first to know when we launch
         </Text>
-        <Button w={"75%"}>Request an invite</Button>
+        <Button onClick={open} w={"100%"}>
+          Request an invite
+        </Button>
       </div>
       <Footer />
+
+      <Modal opened={opened} onClose={close}>
+        Untung
+      </Modal>
     </div>
   );
 };
