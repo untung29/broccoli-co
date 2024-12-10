@@ -5,6 +5,18 @@
   height: 100vh;
   flex-direction: column;
   gap: 1rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 1;
+}
+
+.darkBackground {
+  background-image: url("/public/images/background-dark.jpg");
+}
+
+.lightBackground {
+  background-image: url("/public/images/background-light.jpg");
 }
 
 .content {

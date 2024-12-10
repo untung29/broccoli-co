@@ -1,4 +1,4 @@
-import { Title, Text } from "@mantine/core";
+import { Title, Text, useMantineColorScheme } from "@mantine/core";
 import Header from "../../components/header/Header";
 import styles from "./Home.module.css";
 import Footer from "../../components/footer/Footer";
@@ -19,6 +19,10 @@ export type TFormValues = {
 
 const Home = () => {
   const [opened, { open, close }] = useDisclosure();
+  const { colorScheme } = useMantineColorScheme();
+
+  const backgroundImage =
+    colorScheme === "dark" ? styles.darkBackground : styles.lightBackground;
 
   const form = useForm<TFormValues>({
     initialValues: {
@@ -51,7 +55,7 @@ const Home = () => {
   });
 
   return (
-    <div className={styles.home}>
+    <div className={`${styles.home} ${backgroundImage}`}>
       <Header title="Broccoli & Co." />
       <div className={styles.content}>
         <Title className={styles.title}>A better way to enjoy every day.</Title>

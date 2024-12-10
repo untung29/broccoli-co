@@ -4,7 +4,7 @@
   position: absolute;
   bottom: 0;
   flex-direction: column;
-  border-top: 1px solid #bcccdc;
+  border-top: 1px solid white;
   width: 100%;
   padding: 1rem;
   gap: 0.5rem;
