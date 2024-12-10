@@ -52,7 +52,7 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <Header />
+      <Header title="Broccoli & Co." />
       <div className={styles.content}>
         <Title className={styles.title}>A better way to enjoy every day.</Title>
         <Text className={styles.textContent}>
