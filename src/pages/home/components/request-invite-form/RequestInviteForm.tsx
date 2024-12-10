@@ -1,14 +1,7 @@
-import { UseFormReturnType } from "@mantine/form";
 import Button from "../../../../components/button/Button";
 import styles from "./RequestInviteForm.module.css";
-import { TFormValues } from "../../Home";
 import { Text, TextInput } from "@mantine/core";
-
-type TRequestInviteFormProps = {
-  onSubmit: (event?: React.FormEvent<HTMLFormElement>) => void;
-  form: UseFormReturnType<TFormValues>;
-  isLoading: boolean;
-};
+import { TRequestInviteFormProps } from "./types";
 
 const RequestInviteForm = ({
   onSubmit,
@@ -26,6 +19,7 @@ const RequestInviteForm = ({
         placeholder="Name"
         {...form.getInputProps("name")}
         key={form.key("name")}
+        data-testid="name-input"
       />
 
       <TextInput
@@ -34,6 +28,7 @@ const RequestInviteForm = ({
         placeholder="Type your email"
         {...form.getInputProps("email")}
         key={form.key("email")}
+        data-testid="email-input"
       />
 
       <TextInput
@@ -42,6 +37,7 @@ const RequestInviteForm = ({
         placeholder="Confirm your email"
         {...form.getInputProps("confirmEmail")}
         key={form.key("confirmEmail")}
+        data-testid="confirm-email-input"
       />
 
       <Button loading={isLoading} type="submit">

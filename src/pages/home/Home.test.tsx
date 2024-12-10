@@ -13,7 +13,8 @@ describe("Home Page", () => {
     render(<Home />);
 
     // Header
-    expect(screen.getByText("Broccoli & Co.")).toBeInTheDocument();
+    const headerTitle = screen.getByText("Broccoli & Co.");
+    expect(headerTitle).toBeInTheDocument();
   });
 
   it("should render the main content", () => {
@@ -48,8 +49,9 @@ describe("Home Page", () => {
       name: /Request an invite/i,
     });
     fireEvent.click(requestButton);
+    const modal = screen.getByRole("dialog");
 
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(modal).toBeInTheDocument();
   });
 
   it("closes the modal when 'handleCloseModal' is triggered", () => {
@@ -66,7 +68,8 @@ describe("Home Page", () => {
 
     fireEvent.click(closeButton!);
 
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    const modal = screen.queryByRole("dialog");
+    expect(modal).not.toBeInTheDocument();
   });
 
   it("should show validation errors when form inputs are invalid", () => {
@@ -80,10 +83,30 @@ describe("Home Page", () => {
     const submitButton = screen.getByRole("button", { name: /Submit/i });
     fireEvent.click(submitButton);
 
-    expect(screen.getByText("Invalid email")).toBeInTheDocument();
-    expect(
-      screen.getByText("Name should be at least 3 characters")
-    ).toBeInTheDocument();
+    const invalidEmailText = screen.getByText("Invalid email");
+    const invalidName = screen.getByText(
+      "Name should be at least 3 characters"
+    );
+
+    expect(invalidEmailText).toBeInTheDocument();
+    expect(invalidName).toBeInTheDocument();
+
+    // Testing for the confirmation email validation
+    const emailField = screen.getByTestId("email-input");
+    const confirmEmail = screen.getByTestId("confirm-email-input");
+
+    fireEvent.change(emailField, {
+      target: { value: "test@example.com" },
+    });
+    fireEvent.change(confirmEmail, {
+      target: { value: "tes@example.com" },
+    });
+
+    fireEvent.click(submitButton);
+
+    const invalidConfirmEmail = screen.getByText("Emails are not the same");
+
+    expect(invalidConfirmEmail).toBeInTheDocument();
   });
 
   it("allows the user to fill out the form and shows a success message on valid submission", async () => {
@@ -102,16 +125,22 @@ describe("Home Page", () => {
     fireEvent.click(requestButton);
 
     // Assert that the modal is open
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    const modal = screen.getByRole("dialog");
+    expect(modal).toBeInTheDocument();
 
     // Step 2: Fill out the form
-    fireEvent.change(screen.getByPlaceholderText(/name/i), {
+    // Verify input fields
+    const nameField = screen.getByTestId("name-input");
+    const emailField = screen.getByTestId("email-input");
+    const confirmEmail = screen.getByTestId("confirm-email-input");
+
+    fireEvent.change(nameField, {
       target: { value: "Test User" },
     });
-    fireEvent.change(screen.getByPlaceholderText(/type your email/i), {
+    fireEvent.change(emailField, {
       target: { value: "test@example.com" },
     });
-    fireEvent.change(screen.getByPlaceholderText(/confirm your email/i), {
+    fireEvent.change(confirmEmail, {
       target: { value: "test@example.com" },
     });
 
