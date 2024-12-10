@@ -13,6 +13,7 @@ const Button = ({
 }: TButtonProps) => {
   return (
     <MButton
+      color="black"
       type={type}
       onClick={onClick}
       size={size}
