@@ -41,7 +41,7 @@ const RequestInviteForm = ({
       />
 
       <Button loading={isLoading} type="submit">
-        Submit Form
+        Send
       </Button>
     </form>
   );

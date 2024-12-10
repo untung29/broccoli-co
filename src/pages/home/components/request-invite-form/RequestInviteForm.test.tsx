@@ -39,8 +39,6 @@ describe("RequestInviteForm Component", () => {
     expect(confirmEmail).toBeInTheDocument();
 
     // Verify button
-    expect(
-      screen.getByRole("button", { name: /Submit Form/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /send/i })).toBeInTheDocument();
   });
 });

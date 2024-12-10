@@ -80,7 +80,7 @@ describe("Home Page", () => {
     });
     fireEvent.click(requestButton);
 
-    const submitButton = screen.getByRole("button", { name: /Submit/i });
+    const submitButton = screen.getByRole("button", { name: /send/i });
     fireEvent.click(submitButton);
 
     const invalidEmailText = screen.getByText("Invalid email");
@@ -145,7 +145,7 @@ describe("Home Page", () => {
     });
 
     // Step 3: Submit the form
-    const submitButton = screen.getByRole("button", { name: /submit form/i });
+    const submitButton = screen.getByRole("button", { name: /send/i });
     fireEvent.click(submitButton);
 
     // Step 4: Wait for the success message
