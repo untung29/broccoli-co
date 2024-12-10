@@ -1,15 +1,14 @@
 import { Title, Text } from "@mantine/core";
 import styles from "./Footer.module.css";
+import { TFooterProps } from "./types";
 
-const Footer = () => {
+const Footer = ({ title, copyright }: TFooterProps) => {
   return (
     <footer className={styles.footer}>
       <Title className={styles.footerTitle} size="h4">
-        Made with &#x2665; in Singapore
+        {title}
       </Title>
-      <Text className={styles.footerCopyright}>
-        &copy; 2024 Broccoli & Co. All rights reserved.
-      </Text>
+      <Text className={styles.footerCopyright}>{copyright}</Text>
     </footer>
   );
 };

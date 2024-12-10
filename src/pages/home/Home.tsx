@@ -60,7 +60,10 @@ const Home = () => {
         </Text>
         <Button onClick={open}>Request an invite</Button>
       </div>
-      <Footer />
+      <Footer
+        title="Made with &#x2665; in Singapore"
+        copyright="&copy; 2024 Broccoli & Co. All rights reserved."
+      />
 
       <Modal opened={opened} onClose={handleCloseModal}>
         {mutation.isSuccess ? (
