@@ -1,5 +1,5 @@
 import { Title, Text } from "@mantine/core";
-import Header from "../../components/brocolli-header/Header";
+import Header from "../../components/header/Header";
 import styles from "./Home.module.css";
 import Footer from "../../components/footer/Footer";
 import Button from "../../components/button/Button";
