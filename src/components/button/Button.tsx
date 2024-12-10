@@ -4,7 +4,7 @@ import { TButtonProps } from "./types";
 const Button = ({
   children,
   size = "md",
-  variant = "outline",
+  variant = "default",
   w = "100%",
   disabled,
   onClick,
