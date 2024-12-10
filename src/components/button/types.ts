@@ -5,4 +5,7 @@ export type TButtonProps = {
   children: ReactNode;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   type?: HTMLButtonElement["type"];
-} & Pick<ButtonProps, "size" | "variant" | "w" | "disabled" | "loading">;
+} & Pick<
+  ButtonProps,
+  "size" | "variant" | "w" | "disabled" | "loading" | "color"
+>;
