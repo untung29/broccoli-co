@@ -22,7 +22,8 @@ axiosClient.interceptors.response.use(
     return response;
   },
   (error) => {
-    const errorMessage = error.response?.data?.errorMessage;
+    const errorMessage =
+      error.response?.data?.errorMessage || "An unexpected error occurred";
     showErrorNotification({ message: errorMessage });
     throw error;
   }
